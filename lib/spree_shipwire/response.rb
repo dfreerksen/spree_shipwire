@@ -2,10 +2,11 @@ require 'json'
 
 module SpreeShipwire
   class Response
-    attr_accessor :response
+    attr_reader :response, :json
 
     def initialize(response)
       @response = response
+      @json = OpenStruct.new(JSON.parse(response.body))
     end
 
     # HTTParty status code
@@ -15,37 +16,42 @@ module SpreeShipwire
 
     # HTTParty headers
     def headers
-      response.headers.symbolize_keys
+      response.headers.symbolize_keys!
     end
 
     # Shipwire status
     def status
-      response.body.status
+      json.status
+    end
+
+    # Shipwire message
+    def message
+      json.message
     end
 
     # Shipwire page offset
     def page_offset
-      response.body.resource.offset
+      json.resource.offset
     end
 
     # Shipwire total pages
     def total_pages
-      response.body.resource.total
+      json.resource.total
     end
 
     # Shipwire previous page
     def previous_page
-      response.body.resource.previous
+      json.resource.previous
     end
 
     # Shipwire next page
     def next_page
-      response.body.resource.next
+      json.resource.next
     end
 
     # Shipwire items
     def items
-      response.body.resource.items
+      json.resource.items
     end
   end
 end

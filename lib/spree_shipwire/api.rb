@@ -7,17 +7,17 @@ module SpreeShipwire
     def perform(method, path, opt = {})
       options = request_options(opt)
 
-      # binding.pry
-
       begin
         request = HTTParty.send(method, request_url(path), options)
 
-        if request.body.include? 'Wrong email/password'
+        response = SpreeShipwire::Response.new(request)
+
+        binding.pry
+
+        if response.message.include? 'Please include a valid Authorization header'
           raise BasicAuthenticationError
-        elsif request.code == 200
-          raise AuthenticationError
         else
-          raise RequestError.new(recieved.message)
+          response
         end
       rescue Net::OpenTimeout => e
         raise RequestTimeout.new(e.message)
@@ -46,7 +46,7 @@ module SpreeShipwire
           username: config.username,
           password: config.password
         },
-        body: options
+        body: options.to_json
       }
     end
   end

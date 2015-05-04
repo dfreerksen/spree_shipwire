@@ -69,7 +69,6 @@ describe Spree::Shipwire::OrderWorker, type: :worker do
 
       request = worker.perform(order)
 
-      binding.pry
       expect(request.code).to eq 200
       expect(request.headers).to_not be_empty
 

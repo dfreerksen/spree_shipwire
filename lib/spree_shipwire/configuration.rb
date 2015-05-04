@@ -18,7 +18,7 @@ module SpreeShipwire
     def endpoint
       beta = Rails.env.production? ? '' : '.beta'
 
-      "https://api#{beta}.shipwire.com/exec"
+      "https://api#{beta}.shipwire.com"
     end
 
     def server
