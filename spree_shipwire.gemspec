@@ -40,6 +40,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'sass-rails', '~> 4.0.2'
   s.add_development_dependency 'poltergeist', '1.5'
+  s.add_development_dependency 'vcr'
+  s.add_development_dependency 'webmock'
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'pry', '~> 0.9'
   s.add_development_dependency 'launchy'

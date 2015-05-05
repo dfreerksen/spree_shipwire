@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://fake%40email.com:kick-ass-password@api.beta.shipwire.com/api/v3/orders
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"R035037240","options":{"currency":"USD"},"items":[{"sku":"TEST-PRODUCT","quantity":1}],"shipTo":{"email":"anastasia_purdy@kautzer.us","name":"John
+        Doe","company":"Company","address1":"10 Lovely Street","address2":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199"}}'
+    headers:
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Tue, 05 May 2015 19:14:39 GMT
+      Server:
+      - Apache
+      Www-Authenticate:
+      - Basic realm="Shipwire API"
+      - OAuth realm="Shipwire API"
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '102'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":401,"message":"Please include a valid Authorization header
+        (Basic)","resourceLocation":null}'
+    http_version: 
+  recorded_at: Tue, 05 May 2015 19:14:39 GMT
+recorded_with: VCR 2.9.2

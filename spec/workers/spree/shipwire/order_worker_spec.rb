@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Spree::Shipwire::OrderWorker, type: :worker do
+describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
   before(:each) do
     SpreeShipwire.configure do |c|
       c.username = "david.freerksen@groundctrl.com"

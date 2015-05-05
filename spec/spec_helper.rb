@@ -23,6 +23,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/poltergeist'
+require 'vcr'
 require 'pry'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -38,6 +39,14 @@ require 'spree/testing_support/url_helpers'
 require 'spree/testing_support/order_walkthrough'
 
 Capybara.javascript_driver = :poltergeist
+
+# VCR
+VCR.configure do |c|
+  c.hook_into :webmock
+  c.cassette_library_dir = 'spec/support/vcr_cassettes'
+  c.configure_rspec_metadata!
+  c.default_cassette_options = { record: :new_episodes }
+end
 
 Sidekiq::Testing.fake!
 
