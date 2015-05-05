@@ -4,7 +4,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker do
   before(:each) do
     SpreeShipwire.configure do |c|
       c.username = "david.freerksen@groundctrl.com"
-      c.password = "18530b0bb04349009c7b2ca1d05c70f3"
+      c.password = "gOg6maBr6E"
       c.timeout = 10
     end
   end
@@ -72,12 +72,13 @@ describe Spree::Shipwire::OrderWorker, type: :worker do
       expect(request.code).to eq 200
       expect(request.headers).to_not be_empty
 
-      expect(request.status).to eq "Successful"
+      expect(request.status).to eq 200
+      expect(request.message).to eq "Successful"
       expect(request.page_offset).to eq 0
       expect(request.total_pages).to eq 1
       expect(request.previous_page).to eq nil
       expect(request.next_page).to eq nil
-      expect(request.items).to eq {}
+      expect(request.items.count).to eq 1
     end
   end
 end

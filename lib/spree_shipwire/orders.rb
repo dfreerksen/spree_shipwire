@@ -11,7 +11,7 @@ module SpreeShipwire
     def create
       options = {
         orderNo:    order.number,
-        externalId: order.id,
+        # externalId: order.id,
         options:    order_options,
         items:      order_items,
         shipTo:     shipping_address

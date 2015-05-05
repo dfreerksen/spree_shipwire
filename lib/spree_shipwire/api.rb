@@ -12,13 +12,9 @@ module SpreeShipwire
 
         response = SpreeShipwire::Response.new(request)
 
-        binding.pry
+        basic_authentication(response)
 
-        if response.message.include? 'Please include a valid Authorization header'
-          raise BasicAuthenticationError
-        else
-          response
-        end
+        response
       rescue Net::OpenTimeout => e
         raise RequestTimeout.new(e.message)
       end
@@ -48,6 +44,12 @@ module SpreeShipwire
         },
         body: options.to_json
       }
+    end
+
+    def basic_authentication(response)
+      if response.message.include? 'Please include a valid Authorization header'
+        raise BasicAuthenticationError
+      end
     end
   end
 end
