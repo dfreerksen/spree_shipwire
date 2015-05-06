@@ -5,8 +5,8 @@ http_interactions:
     uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders
     body:
       encoding: UTF-8
-      string: '{"orderNo":"R054549257","options":{"currency":"USD"},"items":[{"sku":"TEST-PRODUCT","quantity":1}],"shipTo":{"email":"oliver@jacobi.us","name":"John
-        Doe","company":"Company","address1":"10 Lovely Street","address2":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199"}}'
+      string: '{"orderNo":"R000240622","options":{"currency":"USD"},"items":[{"sku":"TEST-PRODUCT","quantity":1}],"shipTo":{"email":"julien@auer.biz","name":"John
+        Doe","company":"Company","address1":"10 Lovely Street","address2":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199","isPoBox":false}}'
     headers:
       Content-Type:
       - application/json
@@ -16,7 +16,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 05 May 2015 19:14:39 GMT
+      - Wed, 06 May 2015 00:13:36 GMT
       Server:
       - Apache
       Expires:
@@ -26,24 +26,24 @@ http_interactions:
       Pragma:
       - no-cache
       X-Process-Time-Seconds:
-      - '5.744799'
+      - '5.695864'
       Vary:
       - Accept-Encoding
       P3p:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '3240'
+      - '3239'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
       string: '{"status":200,"message":"Successful","warnings":[{"type":"warning","code":"orderSubmitProblems","message":"Could
-        not verify shipping address","orderNo":"R054549257","externalId":null,"id":91248808}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"type":"warning","code":"orderSubmitProblems","message":"Could
-        not verify shipping address","orderNo":"R054549257","externalId":null,"id":91248808}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91248808","resource":{"externalId":null,"orderNo":"R054549257","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-05-05T12:14:40-07:00","status":"held","id":91248808,"transactionId":"1430853280-096975-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91248808\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91248808\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91248808\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT
+        not verify shipping address","orderNo":"R000240622","externalId":null,"id":91249210}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"type":"warning","code":"orderSubmitProblems","message":"Could
+        not verify shipping address","orderNo":"R000240622","externalId":null,"id":91249210}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91249210","resource":{"externalId":null,"orderNo":"R000240622","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-05-05T17:13:36-07:00","status":"held","id":91249210,"transactionId":"1430871216-574752-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91249210\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91249210\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91249210\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT
         REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"Fulfillment
-        Center"}},"shipTo":{"resourceLocation":null,"resource":{"email":"oliver@jacobi.us","name":"John
-        Doe","company":"Company","address1":"Company","address2":"10 Lovely Street","address3":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199","isCommercial":0,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":null,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-86.9597","destinationLatitude":"33.5884"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-05-05T12:14:40-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":null,"packaging":null,"insurance":null,"handling":null,"total":null}}}}]}}'
+        Center"}},"shipTo":{"resourceLocation":null,"resource":{"email":"julien@auer.biz","name":"John
+        Doe","company":"Company","address1":"Company","address2":"10 Lovely Street","address3":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199","isCommercial":0,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":null,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-86.9597","destinationLatitude":"33.5884"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-05-05T17:13:36-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":null,"packaging":null,"insurance":null,"handling":null,"total":null}}}}]}}'
     http_version: 
-  recorded_at: Tue, 05 May 2015 19:14:45 GMT
+  recorded_at: Wed, 06 May 2015 00:13:42 GMT
 recorded_with: VCR 2.9.2

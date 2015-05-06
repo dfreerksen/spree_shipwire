@@ -19,8 +19,15 @@ module SpreeShipwire
           state:      address.state.abbr,
           postalCode: address.zipcode,
           country:    address.country.iso,
-          phone:      address.phone
+          phone:      address.phone,
+          isPoBox:    po_box?
         }
+      end
+
+      def po_box?
+        re = /(?i)^\s*((P(OST)?.?\s*(O(FF(ICE)?)?)?.?\s+(B(IN|OX))?)|B(IN|OX))/i
+
+        !re.match(address.address1).nil?
       end
     end
   end
