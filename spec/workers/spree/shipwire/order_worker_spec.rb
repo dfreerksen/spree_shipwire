@@ -17,7 +17,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
 
       worker = Spree::Shipwire::OrderWorker.new
 
-      expect { worker.perform(bad_order) }.to raise_error
+      expect { worker.perform(bad_order.number) }.to raise_error
     end
   end
 
@@ -30,7 +30,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
     it 'raises an error' do
       worker = Spree::Shipwire::OrderWorker.new
 
-      expect { worker.perform(order) }.to(
+      expect { worker.perform(order.number) }.to(
         raise_error(SpreeShipwire::AuthenticationError)
       )
     end
@@ -45,7 +45,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
     it 'raises an error' do
       worker = Spree::Shipwire::OrderWorker.new
 
-      expect { worker.perform(order) }.to(
+      expect { worker.perform(order.number) }.to(
         raise_error(SpreeShipwire::BasicAuthenticationError)
       )
     end
@@ -57,7 +57,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
     it 'raises an error' do
       worker = Spree::Shipwire::OrderWorker.new
 
-      expect { worker.perform(order) }.to(
+      expect { worker.perform(order.number) }.to(
         raise_error(SpreeShipwire::RequestTimeout)
       )
     end
@@ -67,7 +67,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
     it 'sends order' do
       worker = Spree::Shipwire::OrderWorker.new
 
-      request = worker.perform(order)
+      request = worker.perform(order.number)
 
       expect(request.code).to eq 200
       expect(request.headers).to_not be_empty
