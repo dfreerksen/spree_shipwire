@@ -1,8 +1,9 @@
 require "spree_core"
-require "spree_shipwire/engine"
 
 require "httparty"
+require "active_support/notifications"
 
+require "spree_shipwire/engine"
 require "spree_shipwire/configuration"
 require "spree_shipwire/api"
 require "spree_shipwire/response"

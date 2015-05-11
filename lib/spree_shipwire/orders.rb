@@ -20,6 +20,10 @@ module SpreeShipwire
       perform(:post, '/api/v3/orders', options)
     end
 
+    def cancel
+      perform(:post, "/api/v3/orders/#{order.number}/cancel")
+    end
+
     private
 
     def order_options

@@ -1,17 +1,15 @@
 Spree::Order.class_eval do
-#  state_machine.after_transition to: :complete,
-#                                 do: :shipwire_order_processing
-#
-#  def shipwire_order_processing
-#    binding.pry
-#    # Spree::Shipwire::OrderWorker.perform_async(@order.number)
-#  end
+  state_machine.after_transition to: :complete,
+                                 do: :shipwire_order_processing
 
-  def finalize_with_notify_shipwire!
-    finalize_without_notify_shipwire!
-
-    binding.pry
-    # Spree::Shipwire::OrderWorker.perform_async(@order.number)
+  def shipwire_order_processing
+    ActiveSupport::Notifications.instrument('order.complete', order: number)
   end
-  valias_method_chain :finalize!, :notify_shipwire!
+
+  def canceled_by_with_notify_shipwire(user)
+    ActiveSupport::Notifications.instrument('order.cancel', order: number)
+
+    canceled_by_without_notify_shipwire(user)
+  end
+  alias_method_chain :canceled_by, :notify_shipwire
 end
