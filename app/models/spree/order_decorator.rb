@@ -7,9 +7,9 @@ Spree::Order.class_eval do
   end
 
   def canceled_by_with_notify_shipwire(user)
-    ActiveSupport::Notifications.instrument('order.cancel', order: number)
-
     canceled_by_without_notify_shipwire(user)
+
+    ActiveSupport::Notifications.instrument('order.cancel', order: number)
   end
   alias_method_chain :canceled_by, :notify_shipwire
 end

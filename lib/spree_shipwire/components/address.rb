@@ -25,9 +25,9 @@ module SpreeShipwire
       end
 
       def po_box?
-        re = /(?i)^\s*((P(OST)?.?\s*(O(FF(ICE)?)?)?.?\s+(B(IN|OX))?)|B(IN|OX))/i
+        re = /(?i)^\s*((P(OST)?.?\s*(O(FF(ICE)?)?)?.?\s+(B(IN|OX))?)|B(IN|OX))/
 
-        !re.match(address.address1).nil?
+        re.match(address.address1) ? 1 : 0
       end
     end
   end

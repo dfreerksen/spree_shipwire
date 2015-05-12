@@ -13,72 +13,34 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
 
   describe 'with incomplete request' do
     it 'raises an error' do
-      bad_order = create(:order)
+      VCR.use_cassette("incomplete_order") do
+        bad_order = create(:order)
 
-      worker = Spree::Shipwire::OrderWorker.new
+        worker = Spree::Shipwire::OrderWorker.new
 
-      expect { worker.perform(bad_order.number) }.to raise_error
-    end
-  end
-
-  describe 'with missing credentials' do
-    before do
-      SpreeShipwire.configuration.username = nil
-      SpreeShipwire.configuration.password = nil
-    end
-
-    it 'raises an error' do
-      worker = Spree::Shipwire::OrderWorker.new
-
-      expect { worker.perform(order.number) }.to(
-        raise_error(SpreeShipwire::AuthenticationError)
-      )
-    end
-  end
-
-  describe 'with incorrect credentials' do
-    before do
-      SpreeShipwire.configuration.username = 'fake@email.com'
-      SpreeShipwire.configuration.password = 'kick-ass-password'
-    end
-
-    it 'raises an error' do
-      worker = Spree::Shipwire::OrderWorker.new
-
-      expect { worker.perform(order.number) }.to(
-        raise_error(SpreeShipwire::BasicAuthenticationError)
-      )
-    end
-  end
-
-  describe 'with API timeout' do
-    before { SpreeShipwire.configuration.timeout = 0.0001 }
-
-    it 'raises an error' do
-      worker = Spree::Shipwire::OrderWorker.new
-
-      expect { worker.perform(order.number) }.to(
-        raise_error(SpreeShipwire::RequestTimeout)
-      )
+        expect { worker.perform(bad_order.number) }.to raise_error
+      end
     end
   end
 
   describe 'with valid request' do
     it 'sends order' do
-      worker = Spree::Shipwire::OrderWorker.new
+      VCR.use_cassette("create_order") do
+        worker = Spree::Shipwire::OrderWorker.new
 
-      request = worker.perform(order.number)
+        request = worker.perform(order.number)
 
-      expect(request.code).to eq 200
-      expect(request.headers).to_not be_empty
+        expect(request.code).to eq 200
+        expect(request.headers).to_not be_empty
 
-      expect(request.status).to eq 200
-      expect(request.message).to eq "Successful"
-      expect(request.page_offset).to eq 0
-      expect(request.total_pages).to eq 1
-      expect(request.previous_page).to eq nil
-      expect(request.next_page).to eq nil
-      expect(request.items.count).to eq 1
+        expect(request.status).to eq 200
+        expect(request.message).to eq "Successful"
+        expect(request.page_offset).to eq 0
+        expect(request.total_pages).to eq 1
+        expect(request.previous_page).to eq nil
+        expect(request.next_page).to eq nil
+        expect(request.items.count).to eq 1
+      end
     end
   end
 end

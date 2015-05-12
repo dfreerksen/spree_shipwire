@@ -9,7 +9,8 @@ module SpreeShipwire
 
       def to_hash
         {
-          currency: order.currency
+          currency:  order.currency,
+          testOrder: !Rails.env.production?
         }
       end
     end

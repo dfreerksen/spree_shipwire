@@ -10,6 +10,7 @@ require "spree_shipwire/response"
 require "spree_shipwire/errors"
 require "spree_shipwire/orders"
 require "spree_shipwire/components/address"
+require "spree_shipwire/components/declaration"
 require "spree_shipwire/components/items"
 require "spree_shipwire/components/options"
 
