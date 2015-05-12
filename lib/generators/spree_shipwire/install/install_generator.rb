@@ -36,7 +36,7 @@ module SpreeShipwire
         question = 'Would you like to run the migrations now? [Y/n]'
 
         run_migrations = options[:auto_run_migrations] ||
-          ['', 'y', 'Y'].include?(ask question)
+                         ['', 'y', 'Y'].include?(ask question)
 
         if run_migrations
           run 'rake db:migrate'
