@@ -20,14 +20,20 @@ module SpreeShipwire
 
       options[:externalId] = order.number unless Rails.env.production?
 
-      perform(:post, '/api/v3/orders', options)
+      request(:post, '/api/v3/orders', options)
     end
 
     def cancel
-      perform(:post, "/api/v3/orders/#{order.shipwire_id}/cancel")
+      request(:post, "/api/v3/orders/#{order.shipwire_id}/cancel")
     end
 
     private
+
+    def request(method, path, options = {})
+      response = perform(method, path, options)
+
+      SpreeShipwire::Response::Orders.new(response)
+    end
 
     def order_options
       Components::Options.new(order).to_hash

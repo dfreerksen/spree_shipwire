@@ -10,11 +10,9 @@ module SpreeShipwire
       begin
         request = HTTParty.send(method, request_url(path), options)
 
-        response = SpreeShipwire::Response.new(request)
+        basic_authentication(request)
 
-        basic_authentication(response)
-
-        response
+        request
       rescue Net::OpenTimeout => e
         raise RequestTimeout.new(e.message)
       end
@@ -47,9 +45,9 @@ module SpreeShipwire
     end
 
     def basic_authentication(response)
-      if response.message.include? 'Please include a valid Authorization header'
-        raise BasicAuthenticationError
-      end
+      message = 'Please include a valid Authorization header'
+
+      raise BasicAuthenticationError if response['message'].include? message
     end
   end
 end
