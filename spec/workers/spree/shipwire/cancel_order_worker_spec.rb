@@ -1,14 +1,6 @@
 require "spec_helper"
 
 describe Spree::Shipwire::CancelOrderWorker, type: :worker, vcr: true do
-  before(:each) do
-    SpreeShipwire.configure do |c|
-      c.username = "david.freerksen@groundctrl.com"
-      c.password = "gOg6maBr6E"
-      c.timeout = 10
-    end
-  end
-
   let!(:order) { create(:completed_order_with_totals) }
 
   describe 'when order does not exist' do
