@@ -113,7 +113,6 @@ module Spree
       def validate_topic
         @topic = params[:topic].gsub('_', '.')
 
-        binding.pry
         unless TOPICS.include?(@topic)
           redirect_to admin_shipwire_path, flash: {
             error: Spree.t('shipwire.admin.flash.unkown_topic')
