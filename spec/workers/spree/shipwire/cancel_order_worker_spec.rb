@@ -25,7 +25,7 @@ describe Spree::Shipwire::CancelOrderWorker, type: :worker, vcr: true do
 
   describe 'with valid request' do
     before do
-      VCR.use_cassette("create_order_to_cancel") do
+      VCR.use_cassette("cancel_order_create") do
         worker = Spree::Shipwire::OrderWorker.new
 
         request = worker.perform(order.number)
@@ -36,7 +36,7 @@ describe Spree::Shipwire::CancelOrderWorker, type: :worker, vcr: true do
     end
 
     it 'cancels order' do
-      VCR.use_cassette("cancel_order") do
+      VCR.use_cassette("cancel_order_success") do
         worker = Spree::Shipwire::CancelOrderWorker.new
 
         request = worker.perform(order.shipwire_id)

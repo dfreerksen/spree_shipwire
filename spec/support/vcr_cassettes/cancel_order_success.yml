@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91259554/cancel
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91273998/cancel
     body:
       encoding: UTF-8
       string: "{}"
@@ -15,7 +15,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 12 May 2015 22:38:32 GMT
+      - Thu, 21 May 2015 21:17:17 GMT
       Server:
       - Apache
       Expires:
@@ -25,7 +25,7 @@ http_interactions:
       Pragma:
       - no-cache
       X-Process-Time-Seconds:
-      - '3.210688'
+      - '5.305077'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -42,5 +42,5 @@ http_interactions:
       string: |
         {"status":200,"message":"Order cancelled","resourceLocation":null}
     http_version: 
-  recorded_at: Tue, 12 May 2015 22:38:36 GMT
+  recorded_at: Thu, 21 May 2015 21:17:22 GMT
 recorded_with: VCR 2.9.2

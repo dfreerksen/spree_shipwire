@@ -37,17 +37,17 @@ RSpec.configure do |config|
 
   config.deprecation_stream = 'rspec.log'
 
+  config.expose_current_running_example_as :example
+
+  config.profile_examples = 10
+
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
 
   config.mock_with :rspec
   config.color = true
 
-  # Capybara javascript drivers require transactional fixtures set to false,
-  # and we use DatabaseCleaner to cleanup after each test instead. Without
-  # transactional fixtures set to false the records created to setup a test will
-  # be unavailable to the browser, which runs under a separate server instance.
   config.use_transactional_fixtures = false
 
-  config.order = "random"
+  config.order = 'random'
 end

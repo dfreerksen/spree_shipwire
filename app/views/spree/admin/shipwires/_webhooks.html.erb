@@ -1,0 +1,26 @@
+<table class="table" id="listing_webhooks" data-hook>
+  <colgroup>
+    <col style="width: 95%" />
+    <col style="width: 5%" />
+  </colgroup>
+  <thead>
+    <tr data-hook="webhooks_header">
+      <th><%= Spree.t('shipwire.admin.headers.description') %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @webhooks.each do |key, value| %>
+    <tr data-hook="webhook_row" class="<%= cycle('odd', 'even')%>">
+      <td><%= value[:description] %></td>
+      <td class="actions">
+        <% if value[:id] %>
+          <%= link_to "Disable", disable_admin_shipwire_path(value[:id]), method: :post %>
+        <% else %>
+          <%= link_to "Enable", enable_admin_shipwire_path(key), method: :post %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

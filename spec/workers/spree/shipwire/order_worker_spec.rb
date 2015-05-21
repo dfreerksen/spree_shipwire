@@ -5,7 +5,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
 
   describe 'with incomplete request' do
     it 'raises an error' do
-      VCR.use_cassette("incomplete_order") do
+      VCR.use_cassette("order_incomplete") do
         bad_order = create(:order)
 
         worker = Spree::Shipwire::OrderWorker.new
@@ -17,7 +17,7 @@ describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
 
   describe 'with valid request' do
     it 'sends order' do
-      VCR.use_cassette("create_order") do
+      VCR.use_cassette("order_create") do
         worker = Spree::Shipwire::OrderWorker.new
 
         request = worker.perform(order.number)

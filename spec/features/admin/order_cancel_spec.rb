@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Admin", type: :feature do
+describe "Admin", type: :feature, vcr: true do
   stub_authorization!
 
   let(:user) { double(id: 123, has_spree_role?: true, spree_api_key: 'fake') }
@@ -21,16 +21,18 @@ describe "Admin", type: :feature do
   end
 
   context "canceling an order", js: true do
-    it "notifies Shipwire" do
-      visit spree.edit_admin_order_path(order.number)
+    it "order_cancel" do
+      VCR.use_cassette("cancel_order_create") do
+        visit spree.edit_admin_order_path(order.number)
 
-      expect(Spree::Shipwire::CancelOrderWorker.jobs.count).to eq 0
+        expect(Spree::Shipwire::CancelOrderWorker.jobs.count).to eq 0
 
-      accept_alert do
-        click_button 'cancel'
+        accept_alert do
+          click_button 'cancel'
+        end
+
+        expect(Spree::Shipwire::CancelOrderWorker.jobs.count).to eq 1
       end
-
-      expect(Spree::Shipwire::CancelOrderWorker.jobs.count).to eq 1
     end
   end
 end

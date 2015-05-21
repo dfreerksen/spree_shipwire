@@ -1,0 +1,13 @@
+<%= render 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t('shipwire.admin.title') %>
+<% end %>
+
+<p>
+  URLs must be called on HTTPS hosts with valid and verifiable SSL certificates. Webhooks will not be enabled for non secure URLs.
+</p>
+
+<%= render 'webhooks' %>
+
+<%= render 'secret' %>

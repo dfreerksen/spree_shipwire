@@ -48,6 +48,10 @@ or
 bundle exec rspec spec
 ```
 
+#### Failing Tests
+
+Tests are using a throwaway Shipwire (beta) account that is only meant for testing. Tests assume that Shipwire is clean. Meaning there are currently no secret tokens and webhooks enabled. If any are present, the tests will fail.
+
 
 ## Contributing
 
