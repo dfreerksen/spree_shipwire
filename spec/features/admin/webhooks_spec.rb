@@ -26,20 +26,17 @@ describe "Webhooks", type: :feature, vcr: true do
         end
       end
 
-      xit "cannot load current webhooks" do
-        VCR.use_cassette("enabled_webhooks_error") do
-          SpreeShipwire.configuration.timeout = 0.0001
+      it "cannot load current webhooks" do
+        SpreeShipwire.configuration.timeout = 0.0001
 
+        VCR.use_cassette("enabled_webhooks_error") do
           visit spree.admin_shipwire_path
 
-          binding.pry
-          within(:css, "table.table tbody tr:nth-child(1)") do
-            click_link "Enable"
-          end
-
-          expect(current_path).to eq spree.admin_shipwire_path
           expect(page).to have_content(
-            Spree.t('shipwire.admin.flash.enable_success')
+            Spree.t('shipwire.admin.flash.hook_list_error')
+          )
+          expect(page).to have_content(
+            Spree.t('shipwire.admin.flash.hook_list_error')
           )
         end
       end
@@ -65,7 +62,9 @@ describe "Webhooks", type: :feature, vcr: true do
 
   context "disabling a webhook" do
     before do
-      VCR.use_cassette("disabled_webhooks_before") do
+      webhook_cleaner("before")
+
+      VCR.use_cassette("create_webhooks_to_remove") do
         visit spree.admin_shipwire_path
 
         within(:css, "table.table tbody tr:nth-child(1)") do
@@ -73,6 +72,8 @@ describe "Webhooks", type: :feature, vcr: true do
         end
       end
     end
+
+    after { webhook_cleaner("after") }
 
     it "is successful" do
       VCR.use_cassette("disabled_webhooks") do

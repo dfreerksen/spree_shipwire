@@ -26,7 +26,6 @@ module SpreeShipwire
     end
 
     def self.activate
-
       Dir.glob("#{config.root}/app/**/*_decorator*.rb") do |klass|
         Rails.configuration.cache_classes ? require(klass) : load(klass)
       end

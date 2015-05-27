@@ -15,11 +15,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 21 May 2015 21:17:00 GMT
+      - Wed, 27 May 2015 21:17:46 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.041442'
+      - '0.039286'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -35,7 +35,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions?offset=0&limit=20","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}}'
     http_version: 
-  recorded_at: Thu, 21 May 2015 21:17:00 GMT
+  recorded_at: Wed, 27 May 2015 21:17:47 GMT
 - request:
     method: post
     uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/webhooks
@@ -51,11 +51,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 21 May 2015 21:17:01 GMT
+      - Wed, 27 May 2015 21:17:47 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.359368'
+      - '0.393368'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -69,9 +69,9 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions\/174","resource":{"id":174,"topic":"order.created","url":"https:\/\/demo.spreecommerce.com\/shipwire\/webhooks"}}]}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions\/201","resource":{"id":201,"topic":"order.created","url":"https:\/\/demo.spreecommerce.com\/shipwire\/webhooks"}}]}}'
     http_version: 
-  recorded_at: Thu, 21 May 2015 21:17:01 GMT
+  recorded_at: Wed, 27 May 2015 21:17:48 GMT
 - request:
     method: get
     uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/webhooks
@@ -87,11 +87,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 21 May 2015 21:17:01 GMT
+      - Wed, 27 May 2015 21:17:48 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.198083'
+      - '0.041221'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -105,7 +105,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions?offset=0&limit=20","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions\/174","resource":{"id":174,"topic":"v1.order.created","url":"https:\/\/demo.spreecommerce.com\/shipwire\/webhooks"}}]}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions?offset=0&limit=20","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/subscriptions\/201","resource":{"id":201,"topic":"v1.order.created","url":"https:\/\/demo.spreecommerce.com\/shipwire\/webhooks"}}]}}'
     http_version: 
-  recorded_at: Thu, 21 May 2015 21:17:02 GMT
+  recorded_at: Wed, 27 May 2015 21:17:48 GMT
 recorded_with: VCR 2.9.2

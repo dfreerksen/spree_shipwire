@@ -1,3 +1,4 @@
+<% if @webhooks.any? %>
 <table class="table" id="listing_webhooks" data-hook>
   <colgroup>
     <col style="width: 95%" />
@@ -24,3 +25,6 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <p><%= Spree.t('shipwire.admin.content.webhooks.none') %></p>
+<% end %>

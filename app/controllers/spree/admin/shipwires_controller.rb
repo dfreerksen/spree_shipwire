@@ -1,56 +1,19 @@
 module Spree
   module Admin
     class ShipwiresController < BaseController
+      include ShipwireHooks
+
       before_action :validate_topic, only: [:enable]
 
       helper_method :secret_token_id
 
-      TOPICS = ['order.created', 'order.updated', 'order.canceled',
-                'tracking.created', 'tracking.updated', 'tracking.delivered']
-
       def show
-        hooks = SpreeShipwire::Webhooks.new.list
+        begin
+          @webhooks = load_webhooks
+        rescue
+          @webhooks = []
 
-        unless hooks.code == 200
-          flash.now[:notice] = "Shit. It didn't get loaded."
-        end
-
-        @webhooks = {
-          'order_created' => {
-            description: 'Notifies when a new order is created.',
-            id:          nil
-          },
-          'order_updated' => {
-            description: 'Notifies whenever data on the order is updated.',
-            id:          nil
-          },
-          'order_canceled' => {
-            description: 'Notifies when an order is canceled.',
-            id:          nil
-          },
-          'tracking_created' => {
-            description: 'Notifies when a new tracking number is added on an
-                          order.',
-            id:          nil
-          },
-          'tracking_updated' => {
-            description: 'Notifies when the tracking resource is updated (e.g.
-                          order has reached destination city).',
-            id:          nil
-          },
-          'tracking_delivered' => {
-            description: 'Notifies when the tracking resource detects carton
-                          delivery.',
-            id:          nil
-          }
-        }
-
-        hooks.items.each do |hook|
-          id    = hook['resource']['id']
-          topic = hook['resource']['topic'].gsub(/v[0-9+]\./, '')
-                                           .gsub('.', '_')
-
-          @webhooks[topic][:id] = id
+          flash.now[:notice] = Spree.t('shipwire.admin.flash.hook_list_error')
         end
       end
 
@@ -58,35 +21,40 @@ module Spree
         subscription = SpreeShipwire::Webhooks.new.create(@topic, webhook_url)
 
         if subscription.status == 200
-          message = { success: Spree.t('shipwire.admin.flash.enable_success') }
+          redirect_with_flash(admin_shipwire_path,
+                              :success,
+                              Spree.t('shipwire.admin.flash.enable_success'))
         else
           reason = subscription.errors.to_sentence
 
-          message = {
-            error: Spree.t('shipwire.admin.flash.enable_error', reason: reason)
-          }
-        end
+          message = Spree.t('shipwire.admin.flash.enable_error', reason: reason)
 
-        redirect_to admin_shipwire_path, flash: message
+          redirect_with_flash(admin_shipwire_path, :error, message)
+        end
       end
 
       def disable
         SpreeShipwire::Webhooks.new.remove(params[:topic])
 
-        redirect_to admin_shipwire_path, flash: {
-          success: Spree.t('shipwire.admin.flash.disable_success')
-        }
+        redirect_with_flash(admin_shipwire_path,
+                            :success,
+                            Spree.t('shipwire.admin.flash.disable_success'))
       end
 
       def secret_create
-        secret = SpreeShipwire::Secrets.new.create
+        begin
+          secret = SpreeShipwire::Secrets.new.create
 
-        Spree::Shipwire::Config.shipwire_secret_id    = secret.id
-        Spree::Shipwire::Config.shipwire_secret_token = secret.token
+          secret_tokens(secret.id, secret.token)
 
-        redirect_to admin_shipwire_path, flash: {
-          success: Spree.t('shipwire.admin.flash.token_create_success')
-        }
+          message = Spree.t('shipwire.admin.flash.token_create_success')
+
+          redirect_with_flash(admin_shipwire_path, :success, message)
+        rescue
+          message = Spree.t('shipwire.admin.flash.token_create_error')
+
+          redirect_with_flash(admin_shipwire_path, :error, message)
+        end
       end
 
       def secret_remove
@@ -94,34 +62,27 @@ module Spree
 
         SpreeShipwire::Secrets.new.remove(id)
 
-        Spree::Shipwire::Config.shipwire_secret_id    = ""
-        Spree::Shipwire::Config.shipwire_secret_token = ""
+        secret_tokens
 
-        redirect_to admin_shipwire_path, flash: {
-          success: Spree.t('shipwire.admin.flash.token_remove_success')
-        }
-      end
+        message = Spree.t('shipwire.admin.flash.token_remove_success')
 
-      protected
-
-      def secret_token_id
-        Spree::Shipwire::Config.shipwire_secret_id
+        redirect_with_flash(admin_shipwire_path, :success, message)
       end
 
       private
+
+      def redirect_with_flash(location, flash_type, message)
+        redirect_to location, flash: { "#{flash_type}" => message }
+      end
 
       def validate_topic
         @topic = params[:topic].gsub('_', '.')
 
         unless TOPICS.include?(@topic)
-          redirect_to admin_shipwire_path, flash: {
-            error: Spree.t('shipwire.admin.flash.unkown_topic')
-          }
+          redirect_with_flash(admin_shipwire_path,
+                              :error,
+                              Spree.t('shipwire.admin.flash.unkown_topic'))
         end
-      end
-
-      def webhook_url
-        "https://#{Spree::Store.current.url}#{shipwire_webhooks_path}"
       end
     end
   end

@@ -9,7 +9,7 @@ describe "Webhook secret tokens", type: :feature, vcr: true do
     after { secret_cleaner("after") }
 
     it "is successful" do
-      VCR.use_cassette("secret_token_create") do
+      VCR.use_cassette("secret_token_create_success") do
         visit spree.admin_shipwire_path
 
         click_link Spree.t('shipwire.admin.secret.unavailable.link')
@@ -19,7 +19,21 @@ describe "Webhook secret tokens", type: :feature, vcr: true do
           Spree.t('shipwire.admin.flash.token_create_success')
         )
       end
+    end
 
+    it "is not successful" do
+      SpreeShipwire.configuration.timeout = 0.0001
+
+      VCR.use_cassette("secret_token_create_error") do
+        visit spree.admin_shipwire_path
+
+        click_link Spree.t('shipwire.admin.secret.unavailable.link')
+
+        expect(current_path).to eq spree.admin_shipwire_path
+        expect(page).to have_content(
+          Spree.t('shipwire.admin.flash.token_create_error')
+        )
+      end
     end
   end
 
@@ -52,8 +66,8 @@ describe "Webhook secret tokens", type: :feature, vcr: true do
         SpreeShipwire::Secrets.new.remove secret['resource']['id']
       end
 
-      Spree::Shipwire::Config.shipwire_secret_id = ""
-      Spree::Shipwire::Config.shipwire_secret_token = ""
+      Spree::Shipwire::Config.shipwire_secret_id    = ''
+      Spree::Shipwire::Config.shipwire_secret_token = ''
     end
   end
 end

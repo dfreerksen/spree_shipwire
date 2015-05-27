@@ -6,12 +6,17 @@ en:
         title: Shipwire Webhooks
         headers:
           description: Description
+        content:
+          webhooks:
+            none: Unable to load webhooks from Shipwire. Will not display webhooks until they are available. Try refreshing the page or try again later.
         flash:
           unkown_topic: Unknown topic
+          hook_list_error: Failed to load current webhooks from Shipwire
           enable_success: Webhook has been enabled
           enable_error: ! 'Could not enable webhook. %{reason}'
-          disable_success: Webhook has been disabled
+          enable_success: Webhook has been enabled
           token_create_success: Secret token has been created
+          token_create_error: Could not create secret token.
           token_remove_success: Secret token has been removed
         secret:
           available:
