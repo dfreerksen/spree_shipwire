@@ -1,28 +1,18 @@
 module SpreeShipwire
   class Engine < ::Rails::Engine
-    require 'spree/core'
+    require "spree/core"
     isolate_namespace SpreeShipwire
 
-    engine_name 'spree_shipwire'
+    engine_name "spree_shipwire"
 
     config.autoload_paths += %W(#{config.root}/lib)
 
-    initializer 'spree_shipwire.initialize' do
-      ActiveSupport::Notifications.subscribe('order.complete') do |*args|
+    initializer "spree_shipwire.initialize" do
+      ActiveSupport::Notifications.subscribe("order.complete") do |*args|
         event = ActiveSupport::Notifications::Event.new(*args)
 
         Spree::Shipwire::OrderWorker.perform_async event.payload[:order]
       end
-
-      ActiveSupport::Notifications.subscribe('order.cancel') do |*args|
-        event = ActiveSupport::Notifications::Event.new(*args)
-
-        Spree::Shipwire::CancelOrderWorker.perform_async event.payload[:order]
-      end
-    end
-
-    initializer 'spree.shipwire.preferences', after: 'spree.environment' do
-      Spree::Shipwire::Config = Spree::ShipwireSetting.new
     end
 
     def self.activate

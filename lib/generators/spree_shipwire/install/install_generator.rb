@@ -1,47 +1,19 @@
 module SpreeShipwire
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      class_option :auto_run_migrations, type: :boolean, default: false
-
-      source_root File.expand_path('../templates', __FILE__)
-
-      def copy_initializer_file
-        copy_file('config/initializers/spree_shipwire.rb',
-                  'config/initializers/spree_shipwire.rb')
-      end
-
       def add_javascripts
-        append_file('vendor/assets/javascripts/spree/frontend/all.js',
-                    "//= require spree/frontend/spree_shipwire\n")
-        append_file('vendor/assets/javascripts/spree/backend/all.js',
-                    "//= require spree/backend/spree_shipwire\n")
+        %w(frontend backend).each do |loc|
+          append_file("vendor/assets/javascripts/spree/#{loc}/all.js",
+                      "//= require spree/#{loc}/spree_shipwire\n")
+        end
       end
 
       def add_stylesheets
-        inject_into_file('vendor/assets/stylesheets/spree/frontend/all.css',
-                         " *= require spree/frontend/spree_shipwire\n",
-                         before: /\*\//,
-                         verbose: true)
-        inject_into_file('vendor/assets/stylesheets/spree/backend/all.css',
-                         " *= require spree/backend/spree_shipwire\n",
-                         before: /\*\//,
-                         verbose: true)
-      end
-
-      def add_migrations
-        run 'rake railties:install:migrations FROM=spree_shipwire'
-      end
-
-      def run_migrations
-        question = 'Would you like to run the migrations now? [Y/n]'
-
-        run_migrations = options[:auto_run_migrations] ||
-                         ['', 'y', 'Y'].include?(ask question)
-
-        if run_migrations
-          run 'rake db:migrate'
-        else
-          puts "Skipping rake db:migrate, don't forget to run it!"
+        %w(frontend backend).each do |loc|
+          inject_into_file("vendor/assets/stylesheets/spree/#{loc}/all.css",
+                           " *= require spree/#{loc}/spree_shipwire\n",
+                           before: /\*\//,
+                           verbose: true)
         end
       end
     end

@@ -2,12 +2,14 @@
 
 Shipwire. For Spree. Without Wombat.
 
+This gem only sends certain pieces of data to Shipwire. Webhooks are not supported in this gem. To use webhooks, use `[spree_shipwire_webhooks](https://github.com/dfreerksen/spree_shipwire_webhooks/) 
+
 
 ## Installation
 
 Add this line to your Spree application's Gemfile:
 
-```ruby
+```
 gem 'spree_shipwire', github: 'dfreerksen/spree_shipwire'
 ```
 
@@ -17,14 +19,14 @@ gem 'spree_shipwire', github: 'dfreerksen/spree_shipwire'
 
 Run the bundle command:
 
-```shell
+```
 bundle install
 ```
 
 After installing, run the generator:
 
-```shell
-bundle exec rails g spree_shipwire:install
+```
+rails g shipwire:install
 ```
 
 
@@ -32,25 +34,15 @@ bundle exec rails g spree_shipwire:install
 
 Generate a dummy application
 
-```shell
+```
 bundle exec rake test_app
 ```
 
 Running tests
 
-```shell
-bundle exec rake spec
 ```
-
-or
-
-```shell
 bundle exec rspec spec
 ```
-
-#### Failing Tests
-
-Tests are using a throwaway Shipwire (beta) account that is only meant for testing. Tests assume that Shipwire is clean. Meaning there are currently no secret tokens and webhooks enabled. If any are present, the tests will fail.
 
 
 ## Contributing

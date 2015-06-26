@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe "Checkout", type: :feature do
   let!(:country) { create(:country, states_required: true) }

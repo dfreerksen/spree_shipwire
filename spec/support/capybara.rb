@@ -1,9 +1,9 @@
-require 'capybara'
-require 'capybara/rspec'
-require 'capybara/rails'
-require 'capybara/poltergeist'
+require "capybara"
+require "capybara/rspec"
+require "capybara/rails"
+require "capybara/poltergeist"
 
-require 'spree/testing_support/capybara_ext'
+require "spree/testing_support/capybara_ext"
 
 Capybara.javascript_driver = :poltergeist
 # Capybara.default_wait_time = 10

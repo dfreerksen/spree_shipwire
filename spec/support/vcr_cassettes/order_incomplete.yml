@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"R703659801","externalId":"R703659801","items":[],"options":{"currency":"USD","canSplit":1},"shipTo":{},"commercialInvoice":{"shippingValue":"0.0","shippingValueCurrency":"USD","insuranceValueCurrency":"USD","additionalValueCurrency":"USD"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 26 Jun 2015 18:50:06 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.051888'
+      X-Request-Id:
+      - 86633e45e4fb37937189f42e262b055c
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '279'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","errors":[{"type":"error","code":"orderSubmitFailed","message":"Order has no shipping address","orderNo":"R703659801.1","externalId":"R703659801","id":null},{"type":"error","code":"orderSubmitFailed","message":"No items in order","orderNo":"R703659801.1","externalId":"R703659801","id":null}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=0","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}}
+    http_version: 
+  recorded_at: Fri, 26 Jun 2015 18:50:13 GMT
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"R014341899","externalId":"R014341899","items":[],"options":{"currency":"USD","canSplit":1},"shipTo":{},"commercialInvoice":{"shippingValue":"0.0","shippingValueCurrency":"USD","insuranceValueCurrency":"USD","additionalValueCurrency":"USD"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 26 Jun 2015 19:17:26 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.052184'
+      X-Request-Id:
+      - 75e04026d40742f3bf2e6f0dafe90033
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '279'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","errors":[{"type":"error","code":"orderSubmitFailed","message":"Order has no shipping address","orderNo":"R014341899.1","externalId":"R014341899","id":null},{"type":"error","code":"orderSubmitFailed","message":"No items in order","orderNo":"R014341899.1","externalId":"R014341899","id":null}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=0","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}}
+    http_version: 
+  recorded_at: Fri, 26 Jun 2015 19:17:33 GMT
+recorded_with: VCR 2.9.3

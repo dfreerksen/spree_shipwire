@@ -5,22 +5,30 @@ http_interactions:
     uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders
     body:
       encoding: UTF-8
-      string: '{"orderNo":"R317955946","externalId":"R317955946","options":{"currency":"USD","testOrder":true},"items":[{"sku":null,"quantity":1}],"shipTo":{"email":"melvina.wiza@kemmerdonnelly.com","name":"John
-        Doe","company":"Company","address1":"10 Lovely Street","address2":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199","isPoBox":0},"commercialInvoice":{"shippingValue":"100.0","additionalValue":"0.0","shippingValueCurrency":"USD","insuranceValueCurrency":"USD","additionalValueCurrency":"USD"}}'
+      string: '{"orderNo":"R636027178","externalId":"R636027178","items":[{"sku":"SKU-1","quantity":1,"commercialInvoiceValue":"17.0","commercialInvoiceValueCurrenc":"USD"}],"options":{"currency":"USD","canSplit":1},"shipTo":{"email":"milford.emard@herman.co.uk","name":"John
+        Doe","company":"Company","address1":"10 Lovely Street","address2":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199"},"commercialInvoice":{"shippingValue":"100.0","shippingValueCurrency":"USD","insuranceValueCurrency":"USD","additionalValueCurrency":"USD"}}'
     headers:
       Content-Type:
       - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 27 May 2015 21:17:56 GMT
+      - Fri, 26 Jun 2015 18:50:04 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '1.310977'
+      - '1.514989'
+      X-Request-Id:
+      - 83fc19389cce93cfa448b8418f364ffa
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -29,14 +37,14 @@ http_interactions:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '3487'
+      - '1078'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
       string: |2-
 
-        {"status":200,"message":"Successful","warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Could not verify shipping address","orderNo":"R317955946","externalId":"R317955946","id":91282954}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Could not verify shipping address","orderNo":"R317955946","externalId":"R317955946","id":91282954}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91282954","resource":{"externalId":"R317955946","orderNo":"R317955946","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-05-27T14:17:56-07:00","status":"held","id":91282954,"transactionId":"1432761476-209463-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91282954\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91282954\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91282954\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"Fulfillment Center"}},"shipTo":{"resourceLocation":null,"resource":{"email":"melvina.wiza@kemmerdonnelly.com","name":"John Doe","company":"Company","address1":"Company","address2":"10 Lovely Street","address3":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199","isCommercial":0,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":100,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-86.9597","destinationLatitude":"33.5884"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-05-27T14:17:56-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":null,"packaging":null,"insurance":null,"handling":null,"total":null}},"shipwireAnywhere":{"resourceLocation":null,"resource":{"status":null}},"pricingEstimate":{"resourceLocation":null,"resource":{"total":null,"insurance":null,"shipping":null,"packaging":null,"handling":null}}}}]}}
+        {"status":200,"message":"Successful","warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Could not verify shipping address","orderNo":"R636027178.1","externalId":"R636027178","id":91329211}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Could not verify shipping address","orderNo":"R636027178.1","externalId":"R636027178","id":91329211}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91329211","resource":{"externalId":"R636027178","orderNo":"R636027178.1","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-06-26T11:50:04-07:00","status":"held","vendorId":0,"vendorExternalId":null,"id":91329211,"transactionId":"1435344604-789549-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91329211\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91329211\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91329211\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91329211\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"WU Test"}},"shipTo":{"resourceLocation":null,"resource":{"email":"milford.emard@herman.co.uk","name":"John Doe","company":"Company","address1":"Company","address2":"10 Lovely Street","address3":"Northwest","city":"Herndon","state":"AL","postalCode":"35005","country":"US","phone":"555-555-0199","isCommercial":0,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":100,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-86.9597","destinationLatitude":"33.5884"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-26T11:50:04-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":0,"packaging":0,"insurance":0,"handling":0,"total":0}},"shipwireAnywhere":{"resourceLocation":null,"resource":{"status":null}},"pricingEstimate":{"resourceLocation":null,"resource":{"total":0,"insurance":0,"shipping":0,"packaging":0,"handling":0}},"splitOrders":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91329211\/splitOrders?offset=0&limit=20"}}}]}}
     http_version: 
-  recorded_at: Wed, 27 May 2015 21:17:57 GMT
-recorded_with: VCR 2.9.2
+  recorded_at: Fri, 26 Jun 2015 18:50:12 GMT
+recorded_with: VCR 2.9.3

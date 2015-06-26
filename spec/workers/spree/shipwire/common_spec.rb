@@ -3,49 +3,49 @@ require "spec_helper"
 describe Spree::Shipwire::OrderWorker, type: :worker, vcr: true do
   let(:order) { create(:completed_order_with_totals) }
 
-  describe 'with missing credentials' do
+  describe "with missing credentials" do
     before do
-      SpreeShipwire.configuration.username = nil
-      SpreeShipwire.configuration.password = nil
+      Shipwire.configuration.username = nil
+      Shipwire.configuration.password = nil
     end
 
-    it 'raises an error' do
-      worker = Spree::Shipwire::OrderWorker.new
+    it "raises an error" do
+      VCR.use_cassette("missing_credentials") do
+        worker = Spree::Shipwire::OrderWorker.new
 
-      expect { worker.perform(order.number) }.to(
-        raise_error(SpreeShipwire::AuthenticationError)
-      )
+        expect(worker.perform(order.number).errors).to include(
+          "Please include a valid Authorization header (Basic)"
+        )
+      end
     end
   end
 
-  describe 'with incorrect credentials' do
+  describe "with incorrect credentials" do
     before do
-      SpreeShipwire.configuration.username = 'fake@email.com'
-      SpreeShipwire.configuration.password = 'kick-ass-password'
+      Shipwire.configuration.username = "fake@email.com"
+      Shipwire.configuration.password = "kick-ass-password"
     end
 
-    it 'raises an error' do
+    it "raises an error" do
       VCR.use_cassette("incorrect_credentials") do
         worker = Spree::Shipwire::OrderWorker.new
 
-        expect { worker.perform(order.number) }.to(
-          raise_error(SpreeShipwire::BasicAuthenticationError)
+        expect(worker.perform(order.number).errors).to include(
+          "Please include a valid Authorization header (Basic)"
         )
       end
     end
   end
 
-  describe 'with API timeout' do
-    before { SpreeShipwire.configuration.timeout = 0.0001 }
+  describe "with API timeout" do
+    before { Shipwire.configuration.timeout = 0.0001 }
 
-    it 'raises an error' do
-      VCR.use_cassette("request_timeout") do
-        worker = Spree::Shipwire::OrderWorker.new
+    it "raises an error" do
+      worker = Spree::Shipwire::OrderWorker.new
 
-        expect { worker.perform(order.number) }.to(
-          raise_error(SpreeShipwire::RequestTimeout)
-        )
-      end
+      expect(worker.perform(order.number).errors).to include(
+        "Shipwire connection timeout"
+      )
     end
   end
 end

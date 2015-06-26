@@ -1,33 +1,30 @@
-# Run Coverage report
-require 'simplecov'
+# Coverage
+require "simplecov"
 SimpleCov.start :rails do
-  add_group 'Workers', 'app/workers'
+  add_group "Workers", "app/workers"
 end
 
-# Configure Rails Environment
-ENV['RAILS_ENV'] = 'test'
+# Rails environment
+ENV["RAILS_ENV"] = "test"
 
 begin
-  require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 rescue LoadError
-  puts 'Could not load dummy application. Run `bundle exec rake test_app` first'
+  puts "Could not load dummy application. Run `bundle exec rake test_app` first"
   exit
 end
 
-require 'rspec/rails'
-require 'ffaker'
-require 'pry'
+require "rspec/rails"
+require "ffaker"
+require "pry"
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
-# Requires factories and other useful helpers defined in spree_core.
-require 'spree/testing_support/authorization_helpers'
-require 'spree/testing_support/controller_requests'
-require 'spree/testing_support/factories'
-require 'spree/testing_support/url_helpers'
-require 'spree/testing_support/order_walkthrough'
+require "spree/testing_support/authorization_helpers"
+require "spree/testing_support/controller_requests"
+require "spree/testing_support/factories"
+require "spree/testing_support/url_helpers"
+require "spree/testing_support/order_walkthrough"
 
 RSpec.configure do |config|
   config.include Spree::TestingSupport::ControllerRequests
@@ -35,19 +32,17 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::UrlHelpers
   config.include Devise::TestHelpers, type: :controller
 
-  config.deprecation_stream = 'rspec.log'
+  config.deprecation_stream = "rspec.log"
 
   config.expose_current_running_example_as :example
 
-  config.profile_examples = 10
+  # config.profile_examples = 10
 
-  # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
 
   config.mock_with :rspec
-  config.color = true
 
   config.use_transactional_fixtures = false
 
-  config.order = 'random'
+  config.order = "random"
 end

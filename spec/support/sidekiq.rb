@@ -1,5 +1,5 @@
-require 'sidekiq/testing'
-require 'rspec-sidekiq'
+require "sidekiq/testing"
+require "rspec-sidekiq"
 
 Sidekiq::Testing.fake!
 

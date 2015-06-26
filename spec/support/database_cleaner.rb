@@ -1,4 +1,4 @@
-require 'database_cleaner'
+require "database_cleaner"
 
 RSpec.configure do |config|
   # Ensure Suite is set to use transactions for speed.
