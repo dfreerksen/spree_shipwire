@@ -1,6 +1,10 @@
 module SpreeShipwire
   module Generators
     class InstallGenerator < Rails::Generators::Base
+      def run_shipwire_generator
+        generate("shipwire:install")
+      end
+
       def add_javascripts
         %w(frontend backend).each do |loc|
           append_file("vendor/assets/javascripts/spree/#{loc}/all.js",

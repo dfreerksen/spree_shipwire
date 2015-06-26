@@ -26,7 +26,7 @@ bundle install
 After installing, run the generator:
 
 ```
-rails g shipwire:install
+rails g spree_shipwire:install
 ```
 
 
